@@ -106,12 +106,12 @@ const userSchema = `
 
 connection.query(userSchema, (error, results, fields) => {
   if (error) throw error;
-  console.log('Tabla User creada o existente');
+  console.log('Tabla user creada o existente');
 });
 
 app.post('/registrarse', (req, res) => {
   const producto = req.body;
-  const query = 'INSERT INTO User SET ?';
+  const query = 'INSERT INTO user SET ?';
   connection.query(query, producto, (error, results, fields) => {
     if (error) {
       console.error(error);
@@ -151,7 +151,7 @@ app.get('/usuario/:id', (req, res) => {
 app.post('/login', (req, res) => {
   const loginForm = req.body;
 
-  const query = 'SELECT * FROM User WHERE username = ? AND password = ?';
+  const query = 'SELECT * FROM user WHERE username = ? AND password = ?';
   connection.query(query, [loginForm.username, loginForm.password], (error, results, fields) => {
     if (error) {
       console.error(error);
@@ -171,7 +171,7 @@ app.post('/login', (req, res) => {
 // Compras
 
 const comprasSchema = `
-  CREATE TABLE IF NOT EXISTS Compras (
+  CREATE TABLE IF NOT EXISTS compras (
     id_compra INT AUTO_INCREMENT PRIMARY KEY,
     id_user INT,
     total INT,
