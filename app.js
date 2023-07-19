@@ -199,7 +199,7 @@ const detalles_comprasSchema = `
     id_producto INT,
     cantidad INT,
     FOREIGN KEY (id_compra) REFERENCES compras(id_compra),
-    FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE
   )
 `;
 
