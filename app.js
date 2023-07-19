@@ -58,7 +58,7 @@ connection.query(productoSchema, (error, results, fields) => {
 // Endpoints
 app.post('/agregar', (req, res) => {
     const producto = req.body;
-    const query = 'INSERT INTO Producto SET ?';
+    const query = 'INSERT INTO producto SET ?';
     connection.query(query, producto, (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -70,7 +70,7 @@ app.post('/agregar', (req, res) => {
 });
 
 app.get('/productos', (req, res) => {
-    const query = 'SELECT * FROM Producto';
+    const query = 'SELECT * FROM producto';
     connection.query(query, (error, results, fields) => {
       if (error) {
         console.error(error);
@@ -83,7 +83,7 @@ app.get('/productos', (req, res) => {
 
 app.delete(`/productos/:id`, (req, res) => {
     const id = req.params.id;
-    const query = 'DELETE FROM Producto WHERE id_producto = ?';
+    const query = 'DELETE FROM producto WHERE id_producto = ?';
     connection.query(query, id, (error, results, fields) => {
       if (error) {
         console.error(error);
