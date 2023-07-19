@@ -133,11 +133,7 @@ app.post('/registrarse', (req, res) => {
       }
     }
   });
-});
-
-
-  const user = req.body;
-  
+});  
 
 app.get('/usuarios', (req, res) => {
   const query = 'SELECT * FROM user';
