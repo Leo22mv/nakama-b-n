@@ -194,6 +194,7 @@ const comprasSchema = `
 
 const detalles_comprasSchema = `
   CREATE TABLE IF NOT EXISTS detalles_compras (
+    id_detalles INT AUTO_INCREMENT PRIMARY KEY,
     id_compra INT,
     id_producto INT,
     cantidad INT,
