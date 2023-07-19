@@ -110,17 +110,34 @@ connection.query(userSchema, (error, results, fields) => {
 });
 
 app.post('/registrarse', (req, res) => {
-  const producto = req.body;
-  const query = 'INSERT INTO user SET ?';
-  connection.query(query, producto, (error, results, fields) => {
+  const user = req.body;
+
+  const query = 'SELECT * FROM user WHERE email = ? OR username = ?';
+  connection.query(query, [user.email, user.username], (error, results, fields) => {
     if (error) {
       console.error(error);
-      res.sendStatus(500);
+      res.status(500).send('Error en el servidor');
     } else {
-      res.sendStatus(200);
+      if (results.length > 0) {
+        res.status(401).send('Email o usuario existentes');
+      } else {
+        const query2 = 'INSERT INTO user SET ?';
+        connection.query(query2, user, (error, results, fields) => {
+          if (error) {
+            console.error(error);
+            res.sendStatus(500);
+          } else {
+            res.sendStatus(200);
+          }
+        });
+      }
     }
   });
 });
+
+
+  const user = req.body;
+  
 
 app.get('/usuarios', (req, res) => {
   const query = 'SELECT * FROM user';
