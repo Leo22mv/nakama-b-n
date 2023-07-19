@@ -189,6 +189,16 @@ const detalles_comprasSchema = `
   )
 `;
 
+connection.query(comprasSchema, (error, results, fields) => {
+  if (error) throw error;
+  console.log('Tabla compras creada o existente');
+});
+
+connection.query(detalles_comprasSchema, (error, results, fields) => {
+  if (error) throw error;
+  console.log('Tabla detalles_compras creada o existente');
+});
+
 app.post('/compra', (req, res) => {
   const cuerpo = req.body; // {user_id:1, total: 10, compra: [{product_id: 1, cantida: 1}]}
   const compra = {id_user: cuerpo.id_user, total: cuerpo.total};
@@ -256,16 +266,6 @@ app.get("/compras", (req, res) => {
     }
   });
 })
-
-connection.query(comprasSchema, (error, results, fields) => {
-  if (error) throw error;
-  console.log('Tabla compras creada o existente');
-});
-
-connection.query(detalles_comprasSchema, (error, results, fields) => {
-  if (error) throw error;
-  console.log('Tabla detalles_compras creada o existente');
-});
 
 // Despliegue
 const port = 3000;
